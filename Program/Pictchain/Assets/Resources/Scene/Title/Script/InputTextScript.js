@@ -19,7 +19,7 @@ function Awake() {
 function Start () {
 }
 
-function Update () {
+function Update () {	
 	var alpha : float;
 	alpha = InputText.material.color.a;
 	if (Direction > 0)
@@ -39,8 +39,4 @@ function Update () {
 }
 
 function OnGUI() {
-	if (Input.anyKey)
-	{
-		MainComponent.ChangeState(SceneState.MenuWindow);
-	}
 }
