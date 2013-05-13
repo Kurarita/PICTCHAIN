@@ -17,54 +17,27 @@ private var State : SceneState;
 private var objTitle : GameObject;
 private var objMenu : GameObject;
 private var objOption : GameObject;
+private var bStart;
 
 function Awake () {
-	State = SceneState.Default;
-	//Instantiate Title
-	objTitle = Instantiate(Title) as GameObject;
-	Destroy(objTitle);
 }
 
 function Start () {
+	bStart = false;
 }
 
 function Update () {
-	if (Input.GetMouseButtonDown(0))
-	{
-		ChangeState(SceneState.MenuWindow);
-	}
 }
 
 function OnGUI () {
-}
-
-function ChangeState(state : SceneState)
-{
-	if (State == state) return;
-	
-	State = state;
-	
-	switch(State)
+	if (Input.GetMouseButtonDown(0) && bStart == false)
 	{
-		case SceneState.Default:
-			Debug.Log("State : Default");
-			break;
-		case SceneState.MenuWindow:
-			Debug.Log("State : MenuWindow");
-			//Destroy Title
-			Destroy(objTitle);
-			//completely delete by substitution null
-			objTitle = null;
-			//Instantiate MenuWindow
-			objMenu = Instantiate(MenuWindow) as GameObject;
-			break;
-		case SceneState.Option:
-			Debug.Log("State : Option");
-			break;
+		bStart = true;
+		GameStart();
 	}
 }
 
 function GameStart()
 {
-	Application.LoadLevelAsync("Game");
+	Application.LoadLevel("Game");
 }
