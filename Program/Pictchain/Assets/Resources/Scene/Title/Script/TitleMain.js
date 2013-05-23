@@ -7,53 +7,38 @@ public enum SceneState
 	Option,			//Draw Option
 };
 
+//public variables
 public var Title : Transform;
 public var MenuWindow : Transform;
 public var OptionMenu : Transform;
 
+//private variables
 private var State : SceneState;
 private var objTitle : GameObject;
 private var objMenu : GameObject;
 private var objOption : GameObject;
+private var bStart;
 
 function Awake () {
-	State = SceneState.Default;
-	//Instantiate Title
-	objTitle = Instantiate(Title) as GameObject;
 }
 
 function Start () {
+	Debug.Log("TitleScene Start");
+	bStart = false;
 }
 
 function Update () {
 }
 
 function OnGUI () {
-}
-
-function ChangeState(state : SceneState)
-{
-	State = state;
-	
-	switch(State)
+	if (Input.GetMouseButtonDown(0) && bStart == false)
 	{
-		case SceneState.Default:
-			Debug.Log("State : Default");
-			break;
-		case SceneState.MenuWindow:
-			Debug.Log("State : MenuWindow");
-			//Destroy Title
-			Destroy(objTitle);
-			//Instantiate MenuWindow
-			objMenu = Instantiate(MenuWindow) as GameObject;
-			break;
-		case SceneState.Option:
-			Debug.Log("State : Option");
-			break;
+		bStart = true;
+		GameStart();
 	}
 }
 
 function GameStart()
 {
-	Application.LoadLevelAsync("Game");
+	Application.LoadLevel("Game");
 }
