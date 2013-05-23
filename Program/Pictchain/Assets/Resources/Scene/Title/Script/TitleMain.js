@@ -23,6 +23,7 @@ function Awake () {
 }
 
 function Start () {
+	Debug.Log("TitleScene Start");
 	bStart = false;
 }
 
